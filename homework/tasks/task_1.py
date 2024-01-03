@@ -1,4 +1,4 @@
-from asyncio import Task
+from asyncio import create_task, Task
 from typing import Callable, Coroutine, Any
 
 
@@ -7,10 +7,16 @@ async def await_my_func(f: Callable[..., Coroutine] | Task | Coroutine) -> Any:
     # её выполнения.
 
     if isinstance(f, Callable):
-        # YOUR CODE GOES HERE
+        cor = f()
+        task = create_task(cor)
+        result = await task
+        return result
     elif isinstance(f, Task):
-        # YOUR CODE GOES HERE
+        result = await f
+        return result
     elif isinstance(f, Coroutine):
-        # YOUR CODE GOES HERE
+        task = create_task(f)
+        result = await task
+        return result
     else:
         raise ValueError('invalid argument')
