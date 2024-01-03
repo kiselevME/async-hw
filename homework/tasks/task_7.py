@@ -20,3 +20,5 @@ class Handler:
         # отличается от времени исполнения нескольких таких корутин, запущенных конкурентно.
         #
         # YOU CODE GOES HERE
+        result = await asyncio.to_thread(self._model.compute)
+        return result

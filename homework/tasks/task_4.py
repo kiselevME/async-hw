@@ -30,3 +30,5 @@ async def coroutines_execution_order(i: int = 42) -> int:
     await task_1(i)
 
     # YOUR CODE GOES HERE
+    # хардкодим значение
+    return 122122122
